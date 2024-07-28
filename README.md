@@ -1,5 +1,7 @@
 # LvUi
 
+A Phoenix Liveview project to build and showcase different UI components for YouTube series
+
 To start your Phoenix server:
 
   * Run `mix setup` to install and setup dependencies
