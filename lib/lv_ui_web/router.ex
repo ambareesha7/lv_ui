@@ -14,10 +14,12 @@ defmodule LvUiWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", LvUiWeb do
+  scope "/", LvUiWeb.Live do
     pipe_through :browser
 
-    get "/", PageController, :home
+    # get "/", PageController, :home
+    live "/", HomeLive
+    live "/checkbox", CheckboxLive
   end
 
   # Other scopes may use custom stacks.

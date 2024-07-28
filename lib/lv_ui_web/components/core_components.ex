@@ -19,6 +19,12 @@ defmodule LvUiWeb.CoreComponents do
   alias Phoenix.LiveView.JS
   import LvUiWeb.Gettext
 
+  def get_page_title(module) do
+    module
+    |> Module.split()
+    |> List.last()
+  end
+
   @doc """
   Renders a modal.
 
@@ -310,7 +316,7 @@ defmodule LvUiWeb.CoreComponents do
 
     ~H"""
     <div>
-      <label class="flex items-center gap-4 text-sm leading-6 text-zinc-600">
+      <label class="flex items-center gap-4 ms-2 font-medium leading-6 ">
         <input type="hidden" name={@name} value="false" disabled={@rest[:disabled]} />
         <input
           type="checkbox"
@@ -318,7 +324,7 @@ defmodule LvUiWeb.CoreComponents do
           name={@name}
           value="true"
           checked={@checked}
-          class="rounded border-zinc-300 text-zinc-900 focus:ring-0"
+          class="rounded border-zinc-300 text-blue-400 focus:ring-2"
           {@rest}
         />
         <%= @label %>

@@ -11,8 +11,7 @@ defmodule LvUi.Application do
       LvUiWeb.Telemetry,
       LvUi.Repo,
       {Ecto.Migrator,
-        repos: Application.fetch_env!(:lv_ui, :ecto_repos),
-        skip: skip_migrations?()},
+       repos: Application.fetch_env!(:lv_ui, :ecto_repos), skip: skip_migrations?()},
       {DNSCluster, query: Application.get_env(:lv_ui, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: LvUi.PubSub},
       # Start the Finch HTTP client for sending emails
