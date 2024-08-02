@@ -20,6 +20,7 @@ defmodule LvUiWeb.Router do
     # get "/", PageController, :home
     live "/", HomeLive
     live "/checkbox", CheckboxLive
+    live "/dropdown", DropdownLive
   end
 
   # Other scopes may use custom stacks.
