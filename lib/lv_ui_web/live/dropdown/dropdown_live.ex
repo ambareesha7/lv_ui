@@ -65,7 +65,7 @@ defmodule LvUiWeb.Live.DropdownLive do
               phx-key="escape"
             >
               <%!-- chevron-down ellipsis-vertical--%>
-              <.icon name="hero-arrow-long-right" class="p-0" />
+              <.icon name="hero-ellipsis-vertical" class="p-0" />
             </button>
 
             <div
