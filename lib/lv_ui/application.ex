@@ -15,6 +15,7 @@ defmodule LvUi.Application do
       {DNSCluster, query: Application.get_env(:lv_ui, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: LvUi.PubSub},
       # Start the Finch HTTP client for sending emails
+      LvUiWeb.Presence,
       {Finch, name: LvUi.Finch},
       # Start a worker by calling: LvUi.Worker.start_link(arg)
       # {LvUi.Worker, arg},

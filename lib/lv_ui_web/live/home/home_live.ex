@@ -13,7 +13,7 @@ defmodule LvUiWeb.Live.HomeLive do
   def render(assigns) do
     ~H"""
     <%!-- Home page --%>
-    <div class="flex flex-col gap-2">
+    <div class="flex flex-col gap-2 py-20">
       <%!-- <button class="relative hover:bg-teal-300 bg-teal-50 p-2 w-1/4" popovertarget="popover1">
         show popup
         <div popover id="popover1" class="absolute bg-teal-200 p-5">
@@ -31,11 +31,13 @@ defmodule LvUiWeb.Live.HomeLive do
       <.modal1 text={@text} />
     </div>
     <div>
-      <h1 class="text-red-700 flex justify-center text-3xl">
+      <h1 class="text-brand py-4 flex justify-center text-3xl">
         Liveview
       </h1>
-      <h1 class=" flex justify-center text-2xl">
-        Dropdowns, Hero icons, Navigation component
+      <h1 class=" flex justify-center items-center text-2xl">
+        Live Chatting, Authentication, Forms,
+        Streams, PubSub,
+        JavaScript interoperability, Auto_scrolling, Datetime formating
       </h1>
       <p>
         <%!-- <%= Faker.Lorem.paragraph(5..10) %> --%>
