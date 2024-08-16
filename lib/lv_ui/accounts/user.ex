@@ -1,4 +1,5 @@
 defmodule LvUi.Accounts.User do
+  alias LvUi.Rooms.Room
   use Ecto.Schema
   import Ecto.Changeset
   @primary_key {:id, :binary_id, autogenerate: true}
@@ -9,6 +10,7 @@ defmodule LvUi.Accounts.User do
     field :hashed_password, :string, redact: true
     field :current_password, :string, virtual: true, redact: true
     field :confirmed_at, :utc_datetime
+    has_many :rooms, Room
 
     timestamps(type: :utc_datetime)
   end

@@ -34,6 +34,15 @@ let liveSocket = new LiveSocket("/live", Socket, {
 topbar.config({ barColors: { 0: "#29d" }, shadowColor: "rgba(0, 0, 0, .3)" });
 window.addEventListener("phx:page-loading-start", (_info) => topbar.show(300));
 window.addEventListener("phx:page-loading-stop", (_info) => topbar.hide());
+window.addEventListener("phx:clear-input", (e) => {
+  let el = document.getElementById("message");
+  let container = document.querySelector("#mbox");
+  if (el.value) {
+    el.value = "";
+  }
+  container.scrollTop = container.scrollHeight;
+  // container.scrollBy(0, 500);
+});
 // connect if there are any LiveViews on the page
 liveSocket.connect();
 

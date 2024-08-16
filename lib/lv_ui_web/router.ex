@@ -71,6 +71,8 @@ defmodule LvUiWeb.Router do
       on_mount: [{LvUiWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
+      live "/rooms", Live.RoomsLive
+      live "/rooms/:id", Live.ChattingLive
     end
   end
 
