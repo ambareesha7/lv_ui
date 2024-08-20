@@ -24,6 +24,7 @@ defmodule LvUiWeb.Router do
     live "/", HomeLive
     live "/checkbox", CheckboxLive
     live "/dropdown", DropdownLive
+    live "/forms", FormLive
   end
 
   # Other scopes may use custom stacks.

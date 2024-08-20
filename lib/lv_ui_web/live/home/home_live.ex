@@ -35,9 +35,7 @@ defmodule LvUiWeb.Live.HomeLive do
         Liveview
       </h1>
       <h1 class=" flex justify-center items-center text-2xl">
-        Live Chatting, Authentication, Forms,
-        Streams, PubSub,
-        JavaScript interoperability, Auto_scrolling, Datetime formating
+        Handle Forms, Inputs
       </h1>
       <p>
         <%!-- <%= Faker.Lorem.paragraph(5..10) %> --%>
