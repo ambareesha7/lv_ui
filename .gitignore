@@ -38,4 +38,5 @@ npm-debug.log
 # Database files
 *.db
 *.db-*
-
+.lexical/
+.elixir-tools/
