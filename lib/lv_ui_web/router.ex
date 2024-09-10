@@ -74,6 +74,7 @@ defmodule LvUiWeb.Router do
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
       live "/rooms", Live.RoomsLive
       live "/rooms/:id", Live.ChattingLive
+      live "/todos", Live.TodosLive
     end
   end
 
