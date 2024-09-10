@@ -38,10 +38,10 @@ defmodule LvUiWeb.CoreComponents do
 
   def show_loader(assigns) do
     ~H"""
-    <div role="status">
+    <div role="loader" class="flex justify-center h-2/6 w-2/6">
       <svg
         aria-hidden="true"
-        class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+        class=" text-gray-200 fill-blue-600 animate-spin "
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

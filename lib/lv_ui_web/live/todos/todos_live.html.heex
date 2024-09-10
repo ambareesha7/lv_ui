@@ -1,0 +1,123 @@
+<div class="flex flex-col gap-2 justify-center items-center">
+  <%!-- todos header --%>
+  <div class="flex w-4/6 justify-between gap-4 rounded-xl border-2 p-10 border-app_border">
+    <div class="flex flex-col justify-between w-full gap-0 ">
+      <h1 class="text-2xl font-bold text-white">Todo done</h1>
+      <p class="text-xs text-white">keep it up</p>
+      <%!-- progress bar --%>
+      <div class="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
+        <%!-- inline style --%>
+        <div class="bg-app_teal h-2.5 rounded-full" style={"width: #{get_parcentage(@todos)}%"}>
+        </div>
+      </div>
+    </div>
+    <%!-- number of items --%>
+    <div class=" rounded-full bg-app_purple border-2 p-2 border-app_border">
+      <div>
+        <p class=" text-white p-4">
+          <%= get_done_tasks(@todos) %>/<%= length(@todos) %>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <%!-- add todos form--%>
+  <.form
+    class="flex gap-2 w-4/6 m-4 justify-between items-center"
+    for={@add_todo}
+    phx-submit="save"
+    phx-change="validate"
+    id="todo_form"
+  >
+    <div class="flex flex-col w-full">
+      <input
+        name="name"
+        value=""
+        id="input"
+        type="text"
+        placeholder="add todos"
+        class={[
+          "w-full text-white bg-todo_secondary_bg border-2 rounded-lg p-4 ",
+          @errors == [] && "border-app_border focus:border-app_border",
+          @errors != [] && "border-rose-400 focus:border-rose-400"
+        ]}
+      />
+      <p :for={err <- @errors} :if={@errors != []} class="text-rose-400"><%= err %></p>
+    </div>
+    <button type="submit">
+      <div class="rounded-full bg-app_purple  p-4">
+        <.icon name="hero-plus-mini" class="h-8 w-8 text-white" />
+      </div>
+    </button>
+  </.form>
+
+  <%!-- for loop to create todos card--%>
+  <div id="todo_list" class="w-4/6">
+    <div
+      :for={todo <- @todos}
+      class="flex bg-todo_secondary_bg rounded-md border-2 border-app_border
+               justify-between place-items-center m-1"
+      id={"todo_#{todo.id}"}
+      name={todo.name}
+    >
+      <div class="flex  items-center gap-2 px-3">
+        <input
+          type="checkbox"
+          phx-click="edit_todo"
+          phx-value-todo_id={todo.id}
+          phx-value-done={"#{!todo.done}"}
+          name="done"
+          checked={todo.done}
+        />
+        <p
+          id={"p#{todo.id}"}
+          class={if todo.done, do: "line-through text-app_teal", else: "text-white"}
+        >
+          <%= todo.name %>
+        </p>
+      </div>
+      <%!-- edit and delete buttons --%>
+      <div class="flex items-center gap-2 p-3">
+        <%!-- call JavaScript code here --%>
+        <button
+          onClick={"document.getElementById('todo_name').value = '#{todo.name}'"}
+          phx-click={
+            show_modal("edit_todo")
+            |> JS.set_attribute({"value", "#{todo.id}"}, to: "#todo_id")
+          }
+        >
+          <.icon name="hero-pencil-square" class="h-8 w-8 text-app_border" />
+        </button>
+        <button phx-click="delete" phx-value-id={todo.id}>
+          <.icon name="hero-trash" class="h-8 w-8 text-red-700" />
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<%!-- editing modal --%>
+<.modal id="edit_todo">
+  <p class="pb-2">Edit todo</p>
+  <.form
+    class="flex gap-2 w-full justify-between items-center"
+    for={@add_todo}
+    phx-submit="edit_todo"
+    phx-update="ignore"
+    id="edit_todo"
+  >
+    <input
+      class="w-5/6 border-2 rounded-lg p-4 border-app_border "
+      type="text"
+      name="name"
+      placeholder="add todos"
+      id="todo_name"
+      required
+    />
+    <input id="todo_id" name="todo_id" class="hidden" />
+    <button type="submit" phx-click={hide_modal("edit_todo")}>
+      <div class="rounded-full bg-app_purple  p-4">
+        <.icon name="hero-plus-mini" class="h-8 w-8 text-white" />
+      </div>
+    </button>
+  </.form>
+</.modal>

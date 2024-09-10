@@ -11,6 +11,11 @@ module.exports = {
     extend: {
       colors: {
         brand: "#FD4F00",
+        todo_bg: "#000430",
+        todo_secondary_bg: "#171c48",
+        app_purple: "#828dff",
+        app_teal: "#24feee",
+        app_border: "#4f46e5",
       },
     },
   },
