@@ -11,6 +11,16 @@ defmodule LvUiWeb.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+    plug :put_user_token
+  end
+
+  defp put_user_token(conn, _) do
+    if current_user = conn.assigns[:current_user] do
+      token = Phoenix.Token.sign(conn, "user socket", current_user.id)
+      assign(conn, :user_token, token)
+    else
+      conn
+    end
   end
 
   pipeline :api do
@@ -25,6 +35,8 @@ defmodule LvUiWeb.Router do
     live "/checkbox", CheckboxLive
     live "/dropdown", DropdownLive
     live "/forms", FormLive
+    # live "/join", JoinLive
+    # live "/room/:username", PeersLive
   end
 
   # Other scopes may use custom stacks.
@@ -44,8 +56,13 @@ defmodule LvUiWeb.Router do
     scope "/dev" do
       pipe_through :browser
 
-      live_dashboard "/dashboard", metrics: LvUiWeb.Telemetry
+      live_dashboard "/dashboard",
+        metrics: LvUiWeb.Telemetry,
+        additional_pages: [exwebrtc: ExWebRTCDashboard]
+
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+
+      # live_dashboard "/dashboard",
     end
   end
 
@@ -75,6 +92,8 @@ defmodule LvUiWeb.Router do
       live "/rooms", Live.RoomsLive
       live "/rooms/:id", Live.ChattingLive
       live "/todos", Live.TodosLive
+      live "/join", Live.JoinLive
+      live "/room/:username", Live.PeersLive
     end
   end
 

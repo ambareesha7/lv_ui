@@ -3,3 +3,6 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+.app-btn {
+    @apply rounded-md bg-app_purple p-2 text-white;
+}

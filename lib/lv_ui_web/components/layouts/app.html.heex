@@ -8,12 +8,18 @@
         v<%= Application.spec(:phoenix, :vsn) %>
       </p>
     </div>
+    <div class="flex gap-1">
+      <p id="viewercount">0</p>
+      <.icon name="hero-user-solid" />
+    </div>
+
     <div class="space-x-1">
       <%!-- <.navigate_to btn_name="Checkboxs" path={~p"/checkbox"} />
       <.navigate_to btn_name="Dropdown" path={~p"/dropdown"} />
       <.navigate_to btn_name="Chatting rooms" path={~p"/rooms"} />
       <.navigate_to btn_name="Forms" path={~p"/forms"} /> --%>
-      <.navigate_to btn_name="Todos" path={~p"/todos"} />
+      <%!-- <.navigate_to btn_name="Todos" path={~p"/todos"} /> --%>
+      <.navigate_to btn_name="Join" path={~p"/join"} />
     </div>
   </div>
 </header>

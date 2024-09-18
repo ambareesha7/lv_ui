@@ -49,6 +49,8 @@ if config_env() == :prod do
 
   config :lv_ui, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
+  config :lv_ui, :ice_port_range, 0..88
+
   config :lv_ui, LvUiWeb.Endpoint,
     url: [host: host, port: 443, scheme: "https"],
     http: [

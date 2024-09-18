@@ -10,6 +10,9 @@ defmodule LvUiWeb.Endpoint do
     signing_salt: "Rl91cWqr",
     same_site: "Lax"
   ]
+  socket "/socket", LvUiWeb.UserSocket,
+    websocket: true,
+    longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket,
     websocket: [connect_info: [session: @session_options]],

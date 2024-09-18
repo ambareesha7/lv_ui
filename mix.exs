@@ -61,6 +61,8 @@ defmodule LvUi.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:faker, "~> 0.18"},
+      {:ex_webrtc, "~> 0.5.0"},
+      {:ex_webrtc_dashboard, "~> 0.5.0"},
       {:timex, "~> 3.7.11"}
     ]
   end
