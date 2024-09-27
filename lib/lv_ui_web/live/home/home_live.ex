@@ -20,9 +20,13 @@ defmodule LvUiWeb.Live.HomeLive do
       <h1 class="text-brand py-4 flex justify-center text-3xl">
         LiveView
       </h1>
-      <h1 class=" flex justify-center items-center text-2xl pb-10">
-        Todo list with custom UI design, error handling, call JaveScript code in LiveView
-      </h1>
+      <div class=" flex flex-col justify-center items-center text-2xl pb-10">
+        <div>
+          Build Kanban board with Drag & Drop feature,
+          <br />changes should sync realtime with multiple browsers
+        </div>
+        <div>and use <span class="p-2 font-bold">Client hooks via phx-hook</span></div>
+      </div>
 
       <%!-- async result here --%>
       <div class="flex justify-center text-2xl ">

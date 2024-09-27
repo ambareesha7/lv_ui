@@ -21,6 +21,30 @@ import "phoenix_html";
 import { Socket } from "phoenix";
 import { LiveSocket } from "phoenix_live_view";
 import topbar from "../vendor/topbar";
+import Sortable from "../vendor/sortable";
+
+let Hooks = {};
+Hooks.Sortable = {
+  mounted() {
+    let group = this.el.dataset.group;
+    let sorter = new Sortable.create(this.el, {
+      group: group ? group : undefined,
+      animation: 150,
+      delay: 100,
+      forceFallback: true,
+      onEnd: (e) => {
+        let params = {
+          oldIndex: e.oldIndex,
+          newIndex: e.newIndex,
+          from: e.from.dataset.list_id,
+          to: e.to.dataset.list_id,
+          ...e.item.dataset,
+        };
+        this.pushEventTo(this.el, "reposition", params);
+      },
+    });
+  },
+};
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
@@ -28,6 +52,7 @@ let csrfToken = document
 let liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: { _csrf_token: csrfToken },
+  hooks: Hooks,
 });
 
 // Show progress bar on live navigation and form submits
