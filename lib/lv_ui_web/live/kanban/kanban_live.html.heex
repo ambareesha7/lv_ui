@@ -1,0 +1,19 @@
+<.form for={@form} id="kanban_form" phx-submit="add_item" class="flex p-4">
+  <.input field={@form[:name]} id="kanban_input" type="text" placeholder="add new card" required />
+  <button
+    phx-disable-with="saving..."
+    class="px-2 shadow-sm font-bold rounded-md
+  border-2 border-gray-50 hover:border-2 hover:border-teal-200"
+  >
+    add
+  </button>
+</.form>
+
+<div class="flex overflow-x-scroll pb-10 ">
+  <div class="flex flex-nowrap lg:ml-40 md:ml-20 ml-10 " id="kanban_body">
+    <.kanban_colm group={@group} items={@streams.todo} list_id="todo" />
+    <.kanban_colm group={@group} items={@streams.in_progress} list_id="in_progress" />
+    <.kanban_colm group={@group} items={@streams.in_qa} list_id="in_qa" />
+    <.kanban_colm group={@group} items={@streams.done} list_id="done" />
+  </div>
+</div>

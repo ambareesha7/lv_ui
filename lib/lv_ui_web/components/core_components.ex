@@ -60,6 +60,41 @@ defmodule LvUiWeb.CoreComponents do
     """
   end
 
+  attr :id, :string, required: true
+  attr :list, :list, required: true
+  attr :item_click, :any, default: nil, doc: "the function for handling phx-click on each item"
+
+  def dropdown_comp(assigns) do
+    ~H"""
+    <div class="relative flex items-start">
+      <button
+        class=" hover:bg-violet-100 active:bg-violet-700 focus:bg-violet-100
+        justify-center items-center p-0 "
+        phx-click={JS.toggle(to: "##{@id}", in: "fade-in-scale", out: "fade-out-scale")}
+        phx-click-away={JS.hide(to: "##{@id}")}
+        phx-keydown={JS.hide(to: "##{@id}")}
+        phx-key="escape"
+      >
+        <div class="flex">
+          <span class="px-2">Select route</span>
+          <.icon name="hero-chevron-down" class="p-0" />
+        </div>
+      </button>
+    </div>
+    <div id={@id} class="absolute mt-[0%] hidden bg-violet-100 rounded-lg py-2">
+      <div
+        :for={item <- @list}
+        value={"item #{item}"}
+        phx-click={@item_click && @item_click.(item)}
+        class={["relative p-0", @item_click && "hover:cursor-pointer"]}
+        class=" p-2 hover:bg-violet-500 active:bg-violet-700"
+      >
+        <%= item %>
+      </div>
+    </div>
+    """
+  end
+
   @doc """
   Renders a modal.
 

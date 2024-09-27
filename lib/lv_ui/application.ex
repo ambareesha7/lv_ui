@@ -16,6 +16,7 @@ defmodule LvUi.Application do
       {Phoenix.PubSub, name: LvUi.PubSub},
       # Start the Finch HTTP client for sending emails
       LvUiWeb.Presence,
+      {LvUi.KanbanBoard, []},
       {Finch, name: LvUi.Finch},
       # Start a worker by calling: LvUi.Worker.start_link(arg)
       # {LvUi.Worker, arg},

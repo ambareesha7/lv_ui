@@ -22,7 +22,7 @@ defmodule LvUiWeb.Router do
 
     # get "/", PageController, :home
     live "/", HomeLive
-    live "/checkbox", CheckboxLive
+    live "/checkboxs", CheckboxLive
     live "/dropdown", DropdownLive
     live "/forms", FormLive
   end
@@ -65,6 +65,7 @@ defmodule LvUiWeb.Router do
     post "/users/log_in", UserSessionController, :create
   end
 
+  ## Authenticated routes
   scope "/", LvUiWeb do
     pipe_through [:browser, :require_authenticated_user]
 
@@ -72,9 +73,10 @@ defmodule LvUiWeb.Router do
       on_mount: [{LvUiWeb.UserAuth, :ensure_authenticated}] do
       live "/users/settings", UserSettingsLive, :edit
       live "/users/settings/confirm_email/:token", UserSettingsLive, :confirm_email
-      live "/rooms", Live.RoomsLive
+      live "/chatting_rooms", Live.RoomsLive
       live "/rooms/:id", Live.ChattingLive
       live "/todos", Live.TodosLive
+      live "/kanban", Live.KanbanLive
     end
   end
 

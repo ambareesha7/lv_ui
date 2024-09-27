@@ -9,8 +9,11 @@ defmodule LvUiWeb.Live.RoomsLive do
     <div class="grid">
       Created Rooms:
       <%= if not is_nil(@rooms) do %>
-        <div :for={value <- @rooms} class=" p-2 odd:bg-violet-100  even:bg-teal-50 ">
-          <.link class="px-10" href={~p"/rooms/#{value.id}?name=#{value.name}"}>
+        <div
+          :for={value <- @rooms}
+          class=" p-2 odd:bg-violet-100  even:bg-teal-50 flex justify-center "
+        >
+          <.link class="flex justify-center w-full " href={~p"/rooms/#{value.id}?name=#{value.name}"}>
             <%= value.name %>
           </.link>
         </div>
