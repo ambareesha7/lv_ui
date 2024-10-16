@@ -17,7 +17,16 @@
 
       <.dropdown_comp
         id="route-dropdown"
-        list={["Home", "Checkboxs", "Dropdown", "Chatting_rooms", "Forms", "Todos", "Kanban"]}
+        list={[
+          "Home",
+          "Checkboxs",
+          "Dropdown",
+          "Chatting_rooms",
+          "Forms",
+          "Todos",
+          "Kanban",
+          "PDF"
+        ]}
         item_click={
           fn e -> JS.navigate("/#{if e == "Home", do: "", else: String.downcase(e)}") end
         }

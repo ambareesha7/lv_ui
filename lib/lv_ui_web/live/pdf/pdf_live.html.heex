@@ -1,0 +1,39 @@
+<div class=" flex flex-col content-center ">
+  <div class="flex justify-center text-4xl font-bold">
+    Generate PDF documents in LiveView
+  </div>
+  <div>
+    <button class="bg-teal-100 hover:bg-teal-200 p-2 rounded-md" phx-click="pdf:proposal">
+      Generat proposal
+    </button>
+    <button class="bg-teal-100 hover:bg-teal-200 p-2 rounded-md" phx-click="pdf:report">
+      Generat employees report
+    </button>
+  </div>
+  <div class="flex justify-center ">
+    <a
+      :if={@pdf_viewer.ok?}
+      class="flex hover:bg-teal-200 justify-center bg-gray-100 p-2 rounded-md"
+      href="/images/template.pdf"
+      download={@pdf_viewer.result}
+    >
+      Download <%= @pdf_viewer.result %>
+      <.icon name="hero-arrow-down-tray" class="p-2" />
+    </a>
+  </div>
+  <div :if={!@initial} class="flex justify-center text-2xl ">
+    <.async_result assign={@pdf_viewer}>
+      <:loading>
+        <.show_loader />
+      </:loading>
+      <div :if={@pdf_viewer.ok?} class=" flex justify-center">
+        <iframe
+          type="application/pdf"
+          width="800"
+          height="1000"
+          src="images/template.pdf#navpanes=0&toolbar=0"
+        />
+      </div>
+    </.async_result>
+  </div>
+</div>

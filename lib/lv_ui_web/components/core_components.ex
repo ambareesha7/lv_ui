@@ -38,7 +38,7 @@ defmodule LvUiWeb.CoreComponents do
 
   def show_loader(assigns) do
     ~H"""
-    <div role="loader" class="flex justify-center h-2/6 w-2/6">
+    <div role="loader" class="flex justify-center h-1/12 w-1/12">
       <svg
         aria-hidden="true"
         class=" text-gray-200 fill-blue-600 animate-spin "
