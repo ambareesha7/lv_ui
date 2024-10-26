@@ -21,11 +21,14 @@ defmodule LvUiWeb.Router do
     pipe_through :browser
 
     # get "/", PageController, :home
+    live_session :default,
+      on_mount: [{LvUiWeb.UserAuth, :mount_current_user}] do
     live "/", HomeLive
     live "/checkboxs", CheckboxLive
     live "/dropdown", DropdownLive
     live "/forms", FormLive
     live "/pdf", PdfLive
+    end
   end
 
   # Other scopes may use custom stacks.

@@ -28,6 +28,9 @@ lv_ui-*.tar
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
 
+# Ignore generated PDF files
+/priv/static/images/template.pdf
+
 # Ignore digested assets cache.
 /priv/static/cache_manifest.json
 
