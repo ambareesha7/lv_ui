@@ -27,10 +27,15 @@ defmodule LvUiWeb.CoreComponents do
 
   attr :btn_name, :string, required: true
   attr :path, :string, required: true
+  attr :method, :string, required: false, default: ""
 
   def navigate_to(assigns) do
     ~H"""
-    <.link class="rounded-lg bg-zinc-100 px-2 py-1 hover:bg-zinc-200/80" navigate={@path}>
+    <.link
+      class="text-[0.8125rem] leading-6 text-zinc-900 font-semibold hover:text-zinc-700"
+      href={@path}
+      method={@method}
+    >
       <%= @btn_name %>
     </.link>
     """
@@ -76,18 +81,23 @@ defmodule LvUiWeb.CoreComponents do
         phx-key="escape"
       >
         <div class="flex">
-          <span class="px-2">Select route</span>
-          <.icon name="hero-chevron-down" class="p-0" />
+          <span class="px-2 invisible sm:visible">Select route</span>
+          <.icon name="hero-bars-3" class="sm:hero-chevron-down" />
         </div>
       </button>
     </div>
-    <div id={@id} class="absolute mt-[0%] hidden bg-violet-100 rounded-lg py-2">
+    <div
+      id={@id}
+      class="absolute hidden mt-[0%] grid justify-start z-50 bg-violet-100 rounded-sm  p-2"
+    >
       <div
         :for={item <- @list}
         value={"item #{item}"}
         phx-click={@item_click && @item_click.(item)}
-        class={["relative p-0", @item_click && "hover:cursor-pointer"]}
-        class=" p-2 hover:bg-violet-500 active:bg-violet-700"
+        class={[
+          "relative p-2 hover:bg-violet-500 active:bg-violet-700",
+          @item_click && "hover:cursor-pointer"
+        ]}
       >
         <%= item %>
       </div>

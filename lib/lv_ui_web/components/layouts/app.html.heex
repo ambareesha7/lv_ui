@@ -8,13 +8,61 @@
         v<%= Application.spec(:phoenix, :vsn) %>
       </p>
     </div>
-    <div class="space-x-1">
-      <%!-- <.navigate_to btn_name="Checkboxs" path={~p"/checkboxs"} />
-      <.navigate_to btn_name="Dropdown" path={~p"/dropdown"} />
-      <.navigate_to btn_name="Chatting_rooms" path={~p"/chatting_rooms"} />
-      <.navigate_to btn_name="Forms" path={~p"/forms"} /> --%>
-      <%!-- <.navigate_to btn_name="Todos" path={~p"/todos"} /> --%>
+    <%!-- smaller screens --%>
+    <div class=" sm:hidden">
+      <button
+        class=" hover:bg-violet-100 active:bg-violet-700 focus:bg-violet-100
+      justify-center items-center p-0 "
+        phx-click={JS.toggle(to: "#settings", in: "fade-in-scale", out: "fade-out-scale")}
+        phx-click-away={JS.hide(to: "#settings")}
+        phx-keydown={JS.hide(to: "#settings")}
+        phx-key="escape"
+      >
+        <%= if @current_user do %>
+          Settings
+        <% else %>
+          <.navigate_to path={~p"/users/log_in"} btn_name="Log in" />
+        <% end %>
+      </button>
+      <div
+        id="settings"
+        class="absolute hidden  mt-[0%] justify-start bg-violet-100 rounded-sm  p-2"
+      >
+        <%= if @current_user do %>
+          <ul class="px-4 justify-end space-x-1">
+            <li>
+              Name: <%= @current_user.email %>
+            </li>
+            <li>
+              <.navigate_to path={~p"/users/settings"} btn_name="Settings" />
+            </li>
+            <li>
+              <.navigate_to path={~p"/users/log_out"} method="delete" btn_name="Log out" />
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
 
+    <%!-- large screens --%>
+    <ul class="relative hidden sm:flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+      <%= if @current_user do %>
+        <li>
+          <%= @current_user.email %>
+        </li>
+        <li>
+          <.navigate_to path={~p"/users/settings"} btn_name="Settings" />
+        </li>
+        <li>
+          <.navigate_to path={~p"/users/log_out"} method="delete" btn_name="Log out" />
+        </li>
+      <% else %>
+        <li>
+          <.navigate_to path={~p"/users/log_in"} btn_name="Log in" />
+        </li>
+      <% end %>
+    </ul>
+    <div class="space-x-1">
       <.dropdown_comp
         id="route-dropdown"
         list={[
