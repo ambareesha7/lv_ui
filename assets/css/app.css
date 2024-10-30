@@ -3,3 +3,21 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
+.square {
+    /* width: 60px;
+    height: 40px; */
+    /* padding: 4px;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    display: flex; */
+}
+.game_board {
+    height: 320px;
+    width: 320px;
+    /* display: grid-8; */
+    flex-wrap: wrap;
+}
+.svg {
+    fill: #d9f99d;
+}

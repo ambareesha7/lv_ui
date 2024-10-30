@@ -45,7 +45,14 @@ Hooks.Sortable = {
     });
   },
 };
-
+Hooks.ChessBoard = {
+  mounted() {
+    let board = document.querySelectorAll("#game_board");
+    board.forEach((e) => {
+      console.log("game board", e.children.length);
+    });
+  },
+};
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");
