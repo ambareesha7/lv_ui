@@ -47,12 +47,42 @@ Hooks.Sortable = {
 };
 Hooks.ChessBoard = {
   mounted() {
-    let board = document.querySelectorAll("#game_board");
-    board.forEach((e) => {
-      console.log("game board", e.children.length);
+    // let board = document.querySelectorAll("#game_board");
+    let boxs = document.querySelectorAll(".square");
+    // let chessIcons = document.querySelectorAll(".piece_div");
+    let draggedElement = null;
+
+    boxs.forEach((square) => {
+      square.addEventListener("dragstart", (ev) => {
+        draggedElement = ev.target;
+        // console.log("dragstart", ev.target);
+      });
+      square.addEventListener("dragover", dragover);
+
+      square.addEventListener("drop", (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        console.log("drop", ev.target);
+
+        if (ev.target.id) {
+          ev.target.appendChild(draggedElement);
+          console.log("drop parentNode", draggedElement.parentNode);
+          let params = {
+            old_index: draggedElement.id,
+            target_id: ev.target.id,
+          };
+          this.pushEventTo(this.el, "reposition", params);
+        }
+      });
     });
   },
 };
+
+function dragover(e) {
+  e.preventDefault();
+  // console.log("dragover ", e.target);
+}
+
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute("content");

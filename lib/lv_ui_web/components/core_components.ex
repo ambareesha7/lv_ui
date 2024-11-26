@@ -41,29 +41,6 @@ defmodule LvUiWeb.CoreComponents do
     """
   end
 
-  attr :id, :string, required: true
-  attr :class, :string, default: ""
-  slot :inner_block, required: true
-
-  def svg_header(assigns) do
-    ~H"""
-    <svg
-      class={@class}
-      version="1.1"
-      id={@id}
-      xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
-      width="800px"
-      height="800px"
-      viewBox="0 0 100 100"
-      enable-background="new 0 0 100 100"
-      xml:space="preserve"
-    >
-      <%= render_slot(@inner_block) %>
-    </svg>
-    """
-  end
-
   def show_loader(assigns) do
     ~H"""
     <div role="loader" class="flex justify-center h-1/12 w-1/12">

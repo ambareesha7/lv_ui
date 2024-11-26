@@ -13,10 +13,10 @@
     display: flex; */
 }
 .game_board {
-    height: 320px;
-    width: 320px;
+    /* height: 320px;
+    width: 320px; */
     /* display: grid-8; */
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
 }
 .svg {
     fill: #d9f99d;
